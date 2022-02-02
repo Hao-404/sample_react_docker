@@ -1,0 +1,11 @@
+sudo: required 
+language: node_js
+node_js:
+    - "stable"
+    
+services: 
+    - docker
+before_install: 
+    - docker build -t Hao-404/sample_react_docker -f Dockerfile.dev .
+script:     
+    - docker run -e CI=true Hao-404/sample_react_docker npm run test -- --coverage --watchAll=false
